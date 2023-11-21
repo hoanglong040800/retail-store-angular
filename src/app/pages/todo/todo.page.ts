@@ -9,7 +9,7 @@ interface ITodo {
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.page.html',
-  styleUrls: ['./todo.scss'],
+  styleUrls: ['./todo.page.scss'],
 })
 export class TodoPage {
   todoList: ITodo[] = [
@@ -24,4 +24,14 @@ export class TodoPage {
       desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, beatae. Delectus iusto voluptate nemo officia ex consequuntur! Quos, quo enim?',
     },
   ];
+
+  isShowCreateForm = false;
+
+  onToggleCreateForm = () => {
+    this.isShowCreateForm = !this.isShowCreateForm;
+  };
+
+  onSave = () => {
+    alert('onSave');
+  };
 }

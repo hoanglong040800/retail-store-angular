@@ -1,7 +1,35 @@
-<div class="todolist">
-  <div class="item" *ngFor="let item of todoList; index as i">
-    <h2>{{item.title}}</h2>
+<div>
+  <div class="todolist">
+    <div class="item" *ngFor="let item of todoList; index as i">
+      <h2>{{item.title}}</h2>
 
-    <p>{{ item.desc }}</p>
+      <p>{{ item.desc }}</p>
+    </div>
   </div>
+
+  <div>
+    <ion-button (click)="onToggleCreateForm()"
+      >{{ isShowCreateForm ? 'Close' : 'Open' }}</ion-button
+    >
+  </div>
+
+  <form *ngIf="isShowCreateForm">
+    <h3>Create new task</h3>
+
+    <label
+      >Title
+      <input type="text" #box />
+    </label>
+
+    <p>{{ box.value }}</p>
+
+    <label
+      >Description
+      <input type="text" />
+    </label>
+
+    <div>
+      <ion-button (click)="onSave()">Save</ion-button>
+    </div>
+  </form>
 </div>
