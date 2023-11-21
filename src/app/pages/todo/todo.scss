@@ -1,0 +1,11 @@
+.todolist {
+  display: flex;
+  gap: 2rem;
+
+  .item {
+    background: var(--ion-card-background);
+    padding: 2rem;
+    flex: 1;
+    min-width: 200px;
+  }
+}

@@ -1,3 +1,7 @@
-<p>
-  todo works!
-</p>
+<div class="todolist">
+  <div class="item" *ngFor="let item of todoList; index as i">
+    <h2>{{item.title}}</h2>
+
+    <p>{{ item.desc }}</p>
+  </div>
+</div>
