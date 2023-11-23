@@ -13,15 +13,13 @@
     >
   </div>
 
-  <form *ngIf="isShowCreateForm">
+  <form *ngIf="isShowCreateForm"  >
     <h3>Create new task</h3>
 
     <label
       >Title
-      <input type="text" #box />
+      <input type="text" />
     </label>
-
-    <p>{{ box.value }}</p>
 
     <label
       >Description

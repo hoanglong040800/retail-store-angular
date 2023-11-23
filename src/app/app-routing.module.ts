@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { TodoPage } from './pages/todo/todo.page';
 
 const routes: Routes = [
   {
@@ -9,8 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'todo',
-    loadChildren: () =>
-      import('./pages/todo/todo.module').then((m) => m.TodoModule),
+    component: TodoPage,
   },
   {
     path: '',
