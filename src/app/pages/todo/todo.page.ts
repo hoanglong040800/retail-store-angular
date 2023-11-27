@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 interface ITodo {
   id: number;
   title: string;
-  desc: string;
+  desc?: string;
 }
 
 const DUMMY_DATA: ITodo[] = [
@@ -27,20 +32,37 @@ const DUMMY_DATA: ITodo[] = [
   templateUrl: './todo.page.html',
   styleUrls: ['./todo.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule],
 })
 export class TodoPage {
-  constructor() {}
-
   todoList: ITodo[] = DUMMY_DATA;
 
-  isShowCreateForm = false;
+  isShowCreateForm = true;
+
+  taskForm = new FormGroup({
+    title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    desc: new FormControl('', [Validators.maxLength(200)]),
+  });
+
+  // shorthand for access input control in html
+  get f() {
+    return this.taskForm.controls;
+  }
 
   onToggleCreateForm = () => {
     this.isShowCreateForm = !this.isShowCreateForm;
   };
 
   onSave = () => {
-    alert('onSave');
+    const genId = this.todoList.length;
+
+    this.todoList.push({
+      id: genId,
+      title: this.f.title.value || '',
+      desc: this.f.desc.value || '',
+    });
+
+    this.taskForm.reset();
+    this.isShowCreateForm = false;
   };
 }

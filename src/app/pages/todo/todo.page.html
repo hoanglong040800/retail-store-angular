@@ -1,11 +1,11 @@
 <div>
-  <div class="todolist">
+  <section class="todolist">
     <div class="item" *ngFor="let item of todoList; index as i">
       <h2>{{item.title}}</h2>
 
       <p>{{ item.desc }}</p>
     </div>
-  </div>
+  </section>
 
   <div>
     <ion-button (click)="onToggleCreateForm()"
@@ -13,21 +13,29 @@
     >
   </div>
 
-  <form *ngIf="isShowCreateForm">
+  <form *ngIf="isShowCreateForm" [formGroup]="taskForm" (ngSubmit)="onSave()">
     <h3>Create new task</h3>
 
-    <label
-      >Title
-      <input type="text" />
-    </label>
+    <section class="form-group">
+      <div class="form-control">
+        <label
+          >Title
+          <input type="text" formControlName="title" />
+        </label>
 
-    <label
-      >Description
-      <input type="text" />
-    </label>
+        <small *ngIf="f.title.touched && f.title.invalid" [ngClass]="'error'"
+          >Invalid</small
+        >
+      </div>
+
+      <label
+        >Description
+        <input type="text" formControlName="desc" />
+      </label>
+    </section>
 
     <div>
-      <ion-button (click)="onSave()">Save</ion-button>
+      <ion-button type="submit" [disabled]="taskForm.invalid">Save</ion-button>
     </div>
   </form>
 </div>
