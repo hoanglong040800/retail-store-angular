@@ -4,6 +4,8 @@
       <h2>{{item.title}}</h2>
 
       <p>{{ item.desc }}</p>
+
+      <ion-button (click)="onDelete(item.id)">Delete</ion-button>
     </div>
   </section>
 

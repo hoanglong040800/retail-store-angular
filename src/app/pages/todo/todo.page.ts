@@ -54,7 +54,7 @@ export class TodoPage {
   };
 
   onSave = () => {
-    const genId = this.todoList.length;
+    const genId = this.todoList.length + 1;
 
     this.todoList.push({
       id: genId,
@@ -64,5 +64,9 @@ export class TodoPage {
 
     this.taskForm.reset();
     this.isShowCreateForm = false;
+  };
+
+  onDelete = (needDeleteId: number) => {
+    this.todoList = this.todoList.filter((task) => task.id !== needDeleteId);
   };
 }
