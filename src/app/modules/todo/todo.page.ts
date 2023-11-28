@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { TodoComponentModule } from './components/todo.component.module';
 
 interface ITodo {
   id: number;
@@ -28,16 +29,16 @@ const DUMMY_DATA: ITodo[] = [
 ];
 
 @Component({
-  selector: 'app-todo',
+  selector: 'todo-page',
   templateUrl: './todo.page.html',
   styleUrls: ['./todo.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule, TodoComponentModule],
 })
 export class TodoPage {
   todoList: ITodo[] = DUMMY_DATA;
 
-  isShowCreateForm = true;
+  isShowCreateForm = false;
 
   taskForm = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
