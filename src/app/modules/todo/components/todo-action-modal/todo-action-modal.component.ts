@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'todo-action-modal',
   templateUrl: './todo-action-modal.component.html',
 })
-export class TodoActionModalComponent {
-  
-}
+export class TodoActionModalComponent {}

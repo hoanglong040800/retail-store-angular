@@ -33,7 +33,12 @@ const DUMMY_DATA: ITodo[] = [
   templateUrl: './todo.page.html',
   styleUrls: ['./todo.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule, TodoComponentModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    ReactiveFormsModule,
+    TodoComponentModule,
+  ],
 })
 export class TodoPage {
   todoList: ITodo[] = DUMMY_DATA;

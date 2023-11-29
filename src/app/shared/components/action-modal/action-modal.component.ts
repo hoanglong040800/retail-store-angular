@@ -7,7 +7,7 @@ import { IonModal } from '@ionic/angular';
   styleUrls: [],
 })
 export class ActionModalComponent {
-  @ViewChild(IonModal) modal!: IonModal
+  @ViewChild(IonModal) modal!: IonModal;
 
   onCancel() {
     this.modal.dismiss();
