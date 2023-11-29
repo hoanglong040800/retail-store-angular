@@ -1,0 +1,21 @@
+<ion-modal trigger="open-todo-action-modal">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="onCancel()">Cancel</ion-button>
+        </ion-buttons>
+
+        <ion-title>Welcome</ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="onConfirm()" [strong]="true">Confirm</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <p>Todo content</p>
+    </ion-content>
+  </ng-template>
+</ion-modal>
