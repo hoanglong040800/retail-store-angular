@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 
 @Component({
@@ -7,6 +7,8 @@ import { IonModal } from '@ionic/angular';
   styleUrls: [],
 })
 export class ActionModalComponent {
+  @Input() title: string = '';
+
   @ViewChild(IonModal) modal!: IonModal;
 
   onCancel() {

@@ -5,17 +5,25 @@
 
       <p>{{ item.desc }}</p>
 
-      <ion-button (click)="onDelete(item.id)">Delete</ion-button>
+      <div>
+        <ion-button id="open-todo-action-modal">Edit</ion-button>
+
+        <ion-button (click)="onDelete(item.id)" fill="clear" color="danger"
+          >Delete</ion-button
+        >
+      </div>
     </div>
   </section>
 
   <div>
-    <ion-button (click)="onToggleCreateForm()"
+    <ion-button (click)="onToggleCreateForm()" color="secondary"
       >{{ isShowCreateForm ? 'Close' : 'Open' }}</ion-button
     >
   </div>
 
-  <todo-action-modal> </todo-action-modal>
+  <action-modal title="Edit Todo">
+    <edit-todo-content />
+  </action-modal>
 
   <form *ngIf="isShowCreateForm" [formGroup]="taskForm" (ngSubmit)="onSave()">
     <h3>Create new task</h3>

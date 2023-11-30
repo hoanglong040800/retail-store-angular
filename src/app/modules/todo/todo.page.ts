@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { TodoComponentModule } from './components/todo.component.module';
+import { SharedComponentModule } from 'shared/components/share-component.module';
 
 interface ITodo {
   id: number;
@@ -38,6 +39,7 @@ const DUMMY_DATA: ITodo[] = [
     IonicModule,
     ReactiveFormsModule,
     TodoComponentModule,
+    SharedComponentModule,
   ],
 })
 export class TodoPage {
