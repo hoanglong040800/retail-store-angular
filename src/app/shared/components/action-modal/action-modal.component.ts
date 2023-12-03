@@ -8,6 +8,7 @@ import { IonModal } from '@ionic/angular';
 })
 export class ActionModalComponent {
   @Input() title: string = '';
+  @Input() onConfirm: () => void = () => null;
 
   @ViewChild(IonModal) modal!: IonModal;
 
@@ -15,7 +16,8 @@ export class ActionModalComponent {
     this.modal.dismiss();
   }
 
-  onConfirm() {
+  handleConfirm() {
+    this.onConfirm();
     this.modal.dismiss();
   }
 }

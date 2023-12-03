@@ -9,7 +9,9 @@
         <ion-title>{{ title }}</ion-title>
 
         <ion-buttons slot="end">
-          <ion-button (click)="onConfirm()" [strong]="true">Confirm</ion-button>
+          <ion-button type="submit" (click)="handleConfirm()" [strong]="true"
+            >Confirm</ion-button
+          >
         </ion-buttons>
       </ion-toolbar>
     </ion-header>

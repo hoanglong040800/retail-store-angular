@@ -1,17 +1,15 @@
-<p>Edit todo content component</p>
-
-<form>
+<form [formGroup]="editTaskForm" (ngSubmit)="onSubmit()">
   <section>
     <div>
       <label>Title</label>
-      <input type="text" />
+      <input type="text" formControlName="title" />
 
       <small>Invalid</small>
     </div>
 
     <div>
       <label>Description</label>
-      <input type="text" />
+      <input type="text" formControlName="desc" />
     </div>
   </section>
 </form>

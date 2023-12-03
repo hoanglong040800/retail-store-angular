@@ -9,12 +9,7 @@ import {
 } from '@angular/forms';
 import { TodoComponentModule } from './components/todo.component.module';
 import { SharedComponentModule } from 'shared/components/share-component.module';
-
-interface ITodo {
-  id: number;
-  title: string;
-  desc?: string;
-}
+import { ITodo } from 'shared/interfaces';
 
 const DUMMY_DATA: ITodo[] = [
   {
@@ -52,16 +47,22 @@ export class TodoPage {
     desc: new FormControl('', [Validators.maxLength(200)]),
   });
 
+  selectedTodo: ITodo = {
+    id: 0,
+    title: '',
+    desc: '',
+  };
+
   // shorthand for access input control in html
   get f() {
     return this.taskForm.controls;
   }
 
-  onToggleCreateForm = () => {
+  onToggleCreateForm() {
     this.isShowCreateForm = !this.isShowCreateForm;
-  };
+  }
 
-  onSave = () => {
+  onSave() {
     const genId = this.todoList.length + 1;
 
     this.todoList.push({
@@ -72,9 +73,14 @@ export class TodoPage {
 
     this.taskForm.reset();
     this.isShowCreateForm = false;
-  };
+  }
 
   onDelete = (needDeleteId: number) => {
     this.todoList = this.todoList.filter((task) => task.id !== needDeleteId);
   };
+
+  onClickEdit(todo: ITodo) {
+    // TODO passing data to content
+    console.log(todo);
+  }
 }

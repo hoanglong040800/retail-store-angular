@@ -6,7 +6,9 @@
       <p>{{ item.desc }}</p>
 
       <div>
-        <ion-button id="open-todo-action-modal">Edit</ion-button>
+        <ion-button id="open-todo-action-modal" (click)="onClickEdit(item)"
+          >Edit</ion-button
+        >
 
         <ion-button (click)="onDelete(item.id)" fill="clear" color="danger"
           >Delete</ion-button
@@ -21,8 +23,12 @@
     >
   </div>
 
-  <action-modal title="Edit Todo">
-    <edit-todo-content />
+  <!-- need to bind for correct this references -->
+  <action-modal
+    title="Edit Todo"
+    [onConfirm]="editTodoContent.onSubmit.bind(editTodoContent)"
+  >
+    <edit-todo-content #editTodoContent [initForm]="selectedTodo" />
   </action-modal>
 
   <form *ngIf="isShowCreateForm" [formGroup]="taskForm" (ngSubmit)="onSave()">
