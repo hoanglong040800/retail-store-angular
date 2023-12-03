@@ -80,7 +80,6 @@ export class TodoPage {
   };
 
   onClickEdit(todo: ITodo) {
-    // TODO passing data to content
-    console.log(todo);
+    this.selectedTodo = todo;
   }
 }
