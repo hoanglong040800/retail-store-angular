@@ -13,11 +13,12 @@ export class ActionModalComponent {
   @ViewChild(IonModal) modal!: IonModal;
 
   onCancel() {
-    this.modal.dismiss();
+    this.modal.isOpen = false;
   }
 
   handleConfirm() {
     this.onConfirm();
-    this.modal.dismiss();
+
+    this.modal.isOpen = false;
   }
 }

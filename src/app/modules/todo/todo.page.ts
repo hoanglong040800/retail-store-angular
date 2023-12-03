@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import {
@@ -10,6 +10,7 @@ import {
 import { TodoComponentModule } from './components/todo.component.module';
 import { SharedComponentModule } from 'shared/components/share-component.module';
 import { ITodo } from 'shared/interfaces';
+import { ActionModalComponent } from 'shared/components/action-modal';
 
 const DUMMY_DATA: ITodo[] = [
   {
@@ -38,6 +39,8 @@ const DUMMY_DATA: ITodo[] = [
   ],
 })
 export class TodoPage {
+  @ViewChild(ActionModalComponent) actionModal!: ActionModalComponent;
+
   todoList: ITodo[] = DUMMY_DATA;
 
   isShowCreateForm = false;
@@ -80,6 +83,7 @@ export class TodoPage {
   };
 
   onClickEdit(todo: ITodo) {
+    this.actionModal.modal.isOpen = true;
     this.selectedTodo = todo;
   }
 }

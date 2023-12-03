@@ -6,9 +6,7 @@
       <p>{{ item.desc }}</p>
 
       <div>
-        <ion-button id="open-todo-action-modal" (click)="onClickEdit(item)"
-          >Edit</ion-button
-        >
+        <ion-button (click)="onClickEdit(item)">Edit</ion-button>
 
         <ion-button (click)="onDelete(item.id)" fill="clear" color="danger"
           >Delete</ion-button
