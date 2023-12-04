@@ -9,6 +9,7 @@ import { SimpleChangesTyped } from 'shared/types';
 })
 export class EditTodoContentComponent implements OnInit {
   @Input() initForm!: ITodo;
+  @Input() onConfirmEdit: (todo: ITodo) => void = () => null;
 
   editTaskForm!: FormGroup;
 
@@ -36,6 +37,10 @@ export class EditTodoContentComponent implements OnInit {
 
   // MUST BE public so action-modal can access
   public onSubmit() {
-    console.log(this.f);
+    this.onConfirmEdit({
+      id: this.initForm.id,
+      title: this.f.title.value,
+      desc: this.f.desc.value,
+    });
   }
 }

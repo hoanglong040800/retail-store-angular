@@ -26,7 +26,12 @@
     title="Edit Todo"
     [onConfirm]="editTodoContent.onSubmit.bind(editTodoContent)"
   >
-    <edit-todo-content #editTodoContent [initForm]="selectedTodo" />
+    <!-- MUST bind this so onConfirmEdit will refer to todo.page this instead of edit-todo-content this -->
+    <edit-todo-content
+      #editTodoContent
+      [initForm]="selectedTodo"
+      [onConfirmEdit]="onConfirmEdit.bind(this)"
+    />
   </action-modal>
 
   <form *ngIf="isShowCreateForm" [formGroup]="taskForm" (ngSubmit)="onSave()">

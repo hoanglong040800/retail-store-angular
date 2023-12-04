@@ -12,6 +12,7 @@ export class ActionModalComponent {
 
   @ViewChild(IonModal) modal!: IonModal;
 
+  // TODO fix bug when click Esc or outside not working
   onCancel() {
     this.modal.isOpen = false;
   }

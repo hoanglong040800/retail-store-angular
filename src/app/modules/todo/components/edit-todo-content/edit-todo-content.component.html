@@ -4,7 +4,9 @@
       <label>Title</label>
       <input type="text" formControlName="title" />
 
-      <small>Invalid</small>
+      <small *ngIf="f.title.touched && f.title.invalid" [ngClass]="'error'"
+        >Invalid</small
+      >
     </div>
 
     <div>

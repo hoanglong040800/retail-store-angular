@@ -86,4 +86,14 @@ export class TodoPage {
     this.actionModal.modal.isOpen = true;
     this.selectedTodo = todo;
   }
+
+  onConfirmEdit(todoInput: ITodo) {
+    const editingTodoId = this.todoList.findIndex((t) => t.id === todoInput.id);
+
+    if (editingTodoId === -1) {
+      throw new Error('Task not found');
+    }
+
+    this.todoList[editingTodoId] = todoInput;
+  }
 }
