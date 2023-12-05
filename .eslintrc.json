@@ -16,6 +16,7 @@
         "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
+        "@angular-eslint/use-lifecycle-interface": "off",
         "@angular-eslint/component-class-suffix": [
           "error",
           {

@@ -23,8 +23,6 @@ export class EditTodoContentComponent implements OnInit {
     });
   }
 
-  // TODO solve lint error
-  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngOnChanges({ initForm }: SimpleChangesTyped<EditTodoContentComponent>) {
     if (initForm && this.editTaskForm) {
       this.editTaskForm.patchValue(this.initForm);
