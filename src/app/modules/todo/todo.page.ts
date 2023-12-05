@@ -83,7 +83,7 @@ export class TodoPage {
   };
 
   onClickEdit(todo: ITodo) {
-    this.actionModal.modal.isOpen = true;
+    this.actionModal.modal.present();
     this.selectedTodo = todo;
   }
 
