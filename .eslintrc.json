@@ -10,9 +10,13 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
+        "@angular-eslint/use-lifecycle-interface": "off",
         "@angular-eslint/component-class-suffix": [
           "error",
           {
@@ -23,7 +27,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "app",
+            "prefix": "",
             "style": "kebab-case"
           }
         ],
@@ -42,5 +46,12 @@
       "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
     }
-  ]
+  ],
+  "rules": {
+    "complexity": ["error", 4],
+    "eqeqeq": "error",
+    "no-unused-vars": "error",
+    "no-useless-rename": "error",
+    "no-var": "error"
+  }
 }

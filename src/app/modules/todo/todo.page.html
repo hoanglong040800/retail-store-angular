@@ -1,0 +1,62 @@
+<div>
+  <section class="todolist">
+    <div class="item" *ngFor="let item of todoList; index as i">
+      <h2>{{item.title}}</h2>
+
+      <p>{{ item.desc }}</p>
+
+      <div>
+        <ion-button (click)="onClickEdit(item)">Edit</ion-button>
+
+        <ion-button (click)="onDelete(item.id)" fill="clear" color="danger"
+          >Delete</ion-button
+        >
+      </div>
+    </div>
+  </section>
+
+  <div>
+    <ion-button (click)="onToggleCreateForm()" color="secondary"
+      >{{ isShowCreateForm ? 'Close' : 'Open' }}</ion-button
+    >
+  </div>
+
+  <!-- need to bind for correct this references -->
+  <action-modal
+    title="Edit Todo"
+    [onConfirm]="editTodoContent.onSubmit.bind(editTodoContent)"
+  >
+    <!-- MUST bind this so onConfirmEdit will refer to todo.page this instead of edit-todo-content this -->
+    <edit-todo-content
+      #editTodoContent
+      [initForm]="selectedTodo"
+      [onConfirmEdit]="onConfirmEdit.bind(this)"
+    />
+  </action-modal>
+
+  <form *ngIf="isShowCreateForm" [formGroup]="taskForm" (ngSubmit)="onSave()">
+    <h3>Create new task</h3>
+
+    <section class="form-group">
+      <div class="form-control">
+        <label
+          >Title
+          <input type="text" formControlName="title" />
+        </label>
+
+        <small *ngIf="f.title.touched && f.title.invalid" [ngClass]="'error'"
+          >Invalid</small
+        >
+      </div>
+
+      <label
+        >Description
+        <input type="text" formControlName="desc" />
+      </label>
+    </section>
+
+    <div>
+      <ion-button type="submit" [disabled]="taskForm.invalid">Save</ion-button>
+    </div>
+  </form>
+</div>

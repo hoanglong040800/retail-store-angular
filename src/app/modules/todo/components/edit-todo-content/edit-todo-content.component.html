@@ -1,0 +1,17 @@
+<form [formGroup]="editTaskForm" (ngSubmit)="onSubmit()">
+  <section>
+    <div>
+      <label>Title</label>
+      <input type="text" formControlName="title" />
+
+      <small *ngIf="f.title.touched && f.title.invalid" [ngClass]="'error'"
+        >Invalid</small
+      >
+    </div>
+
+    <div>
+      <label>Description</label>
+      <input type="text" formControlName="desc" />
+    </div>
+  </section>
+</form>
