@@ -1,1 +1,22 @@
-<p>register-form works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <ion-input
+    label="Email"
+    type="email"
+    placeholder="Input email"
+    formControlName="email"
+  />
+
+  <ion-input
+    label="Password"
+    type="password"
+    placeholder="Input password"
+    formControlName="password"
+  />
+
+  <ion-input
+    label="Confirm Passowrd"
+    type="password"
+    placeholder="Input confirm password"
+    formControlName="confirmPassword"
+  />
+</form>

@@ -3,9 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { IonicModule } from '@ionic/angular';
 import { SharedComponentModule } from 'shared/components/share-component.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, IonicModule, SharedComponentModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedComponentModule,
+    ReactiveFormsModule,
+  ],
   declarations: [RegisterFormComponent],
   exports: [RegisterFormComponent],
 })
