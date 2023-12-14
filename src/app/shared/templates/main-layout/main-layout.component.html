@@ -1,5 +1,10 @@
-<navbar />
+<navbar (openRegisterModal)="onOpenRegisterModal()" />
 
-<action-modal title="Register">
-  <register-form />
+<!-- use pre-defined content id to bind its function -->
+<action-modal
+  title="Register"
+  [onConfirm]="registerForm.onSubmit.bind(registerForm)"
+>
+  <!-- define id for content -->
+  <register-form #registerForm />
 </action-modal>
