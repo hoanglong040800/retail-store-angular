@@ -16,6 +16,32 @@
 
   <div>
     <ion-input
+      label="First Name"
+      placeholder="Input First Name"
+      type="text"
+      formControlName="firstName"
+    />
+
+    <ion-text *ngIf="f.firstName.touched && f.firstName.invalid" color="danger"
+      >Invalid</ion-text
+    >
+  </div>
+
+  <div>
+    <ion-input
+      label="Last Name"
+      placeholder="Input Last Name"
+      type="text"
+      formControlName="lastName"
+    />
+
+    <ion-text *ngIf="f.lastName.touched && f.lastName.invalid" color="danger"
+      >Invalid</ion-text
+    >
+  </div>
+
+  <div>
+    <ion-input
       label="Password"
       type="password"
       placeholder="Input password"
