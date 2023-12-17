@@ -1,24 +1,46 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <ion-input
-    label="Email"
-    type="email"
-    placeholder="Input email"
-    formControlName="email"
-  />
+  <!-- TODO create new component -->
 
-  <ion-text color="danger">Invalid</ion-text>
+  <div>
+    <ion-input
+      label="Email"
+      type="email"
+      placeholder="Input email"
+      formControlName="email"
+    />
 
-  <ion-input
-    label="Password"
-    type="password"
-    placeholder="Input password"
-    formControlName="password"
-  />
+    <ion-text *ngIf="f.email.touched && f.email.invalid" color="danger"
+      >Invalid</ion-text
+    >
+  </div>
 
-  <ion-input
-    label="Confirm Passowrd"
-    type="password"
-    placeholder="Input confirm password"
-    formControlName="confirmPassword"
-  />
+  <div>
+    <ion-input
+      label="Password"
+      type="password"
+      placeholder="Input password"
+      formControlName="password"
+      (change)="validateConfirmPass()"
+    />
+
+    <ion-text *ngIf="f.password.touched && f.password.invalid" color="danger"
+      >Invalid</ion-text
+    >
+  </div>
+
+  <div>
+    <ion-input
+      label="Confirm Passowrd"
+      type="password"
+      placeholder="Input confirm password"
+      formControlName="confirmPassword"
+      (change)="validateConfirmPass()"
+    />
+
+    <ion-text
+      *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid"
+      color="danger"
+      >Invalid</ion-text
+    >
+  </div>
 </form>

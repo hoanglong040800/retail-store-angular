@@ -8,6 +8,8 @@ import { IonModal } from '@ionic/angular';
 })
 export class ActionModalComponent {
   @Input() title: string = '';
+  @Input() disabledConfirmButton: boolean = false;
+
   @Input() onConfirm: () => void = () => null;
 
   @ViewChild(IonModal) modal!: IonModal;
@@ -18,6 +20,7 @@ export class ActionModalComponent {
 
   handleConfirm() {
     this.onConfirm();
-    this.modal.dismiss();
+    // TODO uncomment
+    // this.modal.dismiss();
   }
 }

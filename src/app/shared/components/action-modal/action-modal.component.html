@@ -9,7 +9,11 @@
         <ion-title>{{ title }}</ion-title>
 
         <ion-buttons slot="end">
-          <ion-button type="submit" (click)="handleConfirm()" [strong]="true"
+          <ion-button
+            type="submit"
+            (click)="handleConfirm()"
+            [strong]="true"
+            [disabled]="disabledConfirmButton"
             >Confirm</ion-button
           >
         </ion-buttons>

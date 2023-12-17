@@ -4,6 +4,7 @@
 <action-modal
   title="Register"
   [onConfirm]="registerForm.onSubmit.bind(registerForm)"
+  [disabledConfirmButton]="registerForm.disabledConfirm"
 >
   <!-- define id for content -->
   <register-form #registerForm />
