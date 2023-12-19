@@ -1,20 +1,16 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
-import { API_URL } from 'shared/constant';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private API_ROUTE = `${API_URL}/auth`;
+  private ROUTE = '/auth';
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
   // TODO define interface later
-  // TODO create seperate apiService
   async register(input: object): Promise<object> {
-    const observe = this.http.post(`${this.API_ROUTE}/register`, input);
-    return await lastValueFrom(observe);
+    return await this.api.post(`${this.ROUTE}/register`, input);
   }
 }
