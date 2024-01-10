@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 import { AuthService } from 'shared/services';
 
 @Component({
@@ -17,7 +18,10 @@ export class RegisterFormComponent {
 
   public disabledConfirm = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private toastCtrl: ToastController,
+  ) {}
 
   get f() {
     return this.registerForm.controls;
@@ -29,7 +33,7 @@ export class RegisterFormComponent {
     });
   }
 
-  public async onSubmit() {
+  public async onSubmit(): Promise<void> {
     if (this.registerForm.untouched) {
       this.markAllAsTouched();
     }
@@ -38,9 +42,36 @@ export class RegisterFormComponent {
       return;
     }
 
-    const result = await this.authService.register(this.registerForm.value);
-    // TODO show alert success
-    console.log(result);
+    try {
+      await this.authService.register(this.registerForm.value);
+
+      // if (!result) {
+      //   throw new Error(`There's something wrong. Please try again`);
+      // }
+
+      this.showToast('Register successfully', 'success');
+    } catch (e) {
+      this.showToast((e as Error).message, 'error');
+    }
+  }
+
+  // TODO move to own toastService
+  async showToast(message: string, type: 'success' | 'error') {
+    type ToastClass = 'toast-success' | 'toast-error';
+
+    const cssClassByType: { [key in typeof type]: ToastClass } = {
+      success: 'toast-success',
+      error: 'toast-error',
+    };
+
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 3000,
+      position: 'bottom',
+      cssClass: cssClassByType[type],
+    });
+
+    await toast.present();
   }
 
   validateConfirmPass() {
