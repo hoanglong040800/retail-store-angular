@@ -43,16 +43,20 @@ export class RegisterFormComponent {
     }
 
     try {
-      await this.authService.register(this.registerForm.value);
-
-      // if (!result) {
-      //   throw new Error(`There's something wrong. Please try again`);
-      // }
-
-      this.showToast('Register successfully', 'success');
+      await this.handleRegister();
     } catch (e) {
       this.showToast((e as Error).message, 'error');
     }
+  }
+
+  async handleRegister(): Promise<void> {
+    const result = await this.authService.register(this.registerForm.value);
+
+    if (!result) {
+      throw new Error(`There's something wrong. Please try again`);
+    }
+
+    this.showToast('Register successfully', 'success');
   }
 
   // TODO move to own toastService
