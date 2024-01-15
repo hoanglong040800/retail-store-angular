@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Retail Store</ion-title>
+
+    <ion-button (click)="onClickRegister()">Register</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<!-- use pre-defined content id to bind its function -->
+<action-modal
+  title="Register"
+  [onConfirm]="registerForm.onSubmit.bind(registerForm)"
+  [disabledConfirmButton]="registerForm.disabledConfirm"
+>
+  <!-- define id for content -->
+  <register-form #registerForm />
+</action-modal>

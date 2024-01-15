@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { NavbarComponent } from './navbar';
 import { ActionModalComponent } from './action-modal';
 
 @NgModule({
   imports: [IonicModule],
-  declarations: [ActionModalComponent, NavbarComponent],
-  exports: [ActionModalComponent, NavbarComponent],
+  declarations: [ActionModalComponent],
+  exports: [ActionModalComponent],
 })
 export class SharedComponentModule {}

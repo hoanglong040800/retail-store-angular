@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { SharedComponentModule } from 'shared/components/shared-component.module';
 import { IonicModule } from '@ionic/angular';
-import { AuthModule } from 'modules/auth/auth.module';
+import { NavbarComponent } from 'modules/navbar';
 
 @NgModule({
-  imports: [CommonModule, IonicModule, SharedComponentModule, AuthModule],
+  imports: [CommonModule, IonicModule, SharedComponentModule, NavbarComponent],
   declarations: [MainLayoutComponent],
   exports: [MainLayoutComponent],
 })
