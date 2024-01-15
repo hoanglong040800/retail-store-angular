@@ -2,16 +2,28 @@
   <ion-toolbar>
     <ion-title>Retail Store</ion-title>
 
-    <ion-button (click)="onClickRegister()">Register</ion-button>
+    <ion-button (click)="onOpenAuthModal('register')">Register</ion-button>
+    <ion-button (click)="onOpenAuthModal('login')">Login</ion-button>
   </ion-toolbar>
 </ion-header>
 
-<!-- use pre-defined content id to bind its function -->
+<!-- use pre-defined id to bind its function -->
 <action-modal
-  title="Register"
+  #registerFormModal
+  [title]="renderAuthFormTitle()"
   [onConfirm]="registerForm.onSubmit.bind(registerForm)"
   [disabledConfirmButton]="registerForm.disabledConfirm"
 >
-  <!-- define id for content -->
+  <!-- define id for binding -->
   <register-form #registerForm />
+</action-modal>
+
+<!-- use separated action-modal for binding purpose. Can not dynamically bind -->
+<action-modal
+  #loginFormModal
+  [title]="renderAuthFormTitle()"
+  [onConfirm]="loginForm.onSubmit.bind(loginForm)"
+  [disabledConfirmButton]="loginForm.disabledConfirm"
+>
+  <login-form #loginForm />
 </action-modal>

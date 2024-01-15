@@ -8,8 +8,8 @@ import { IonModal } from '@ionic/angular';
 })
 export class ActionModalComponent {
   @Input() title: string = '';
-  @Input() disabledConfirmButton: boolean = false;
-  @Input() onConfirm: () => Promise<void | boolean> | void = () =>
+  @Input() disabledConfirmButton: boolean | undefined = false;
+  @Input() onConfirm: () => Promise<void | boolean> | void | undefined = () =>
     Promise.resolve();
 
   @ViewChild(IonModal) modal!: IonModal;
