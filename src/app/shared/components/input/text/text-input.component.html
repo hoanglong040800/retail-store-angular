@@ -1,0 +1,12 @@
+<div [formGroup]="formGroup">
+  <ion-input
+    [label]="label"
+    [type]="type"
+    [placeholder]="placeholder"
+    [formControlName]="name"
+  />
+
+  <ion-text *ngIf="f[name].touched && f[name].invalid" color="danger"
+    >Invalid</ion-text
+  >
+</div>

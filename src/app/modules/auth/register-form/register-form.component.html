@@ -1,25 +1,19 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <!-- TODO create new component -->
+  <text-input
+    label="Email"
+    type="email"
+    placeholder="Input email"
+    name="email"
+    [formGroup]="registerForm"
+  />
 
   <div>
-    <ion-input
-      label="Email"
-      type="email"
-      placeholder="Input email"
-      formControlName="email"
-    />
-
-    <ion-text *ngIf="f.email.touched && f.email.invalid" color="danger"
-      >Invalid</ion-text
-    >
-  </div>
-
-  <div>
-    <ion-input
+    <text-input
       label="First Name"
       placeholder="Input First Name"
       type="text"
-      formControlName="firstName"
+      name="firstName"
+      [formGroup]="registerForm"
     />
 
     <ion-text *ngIf="f.firstName.touched && f.firstName.invalid" color="danger"
