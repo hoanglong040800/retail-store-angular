@@ -7,32 +7,21 @@
     [formGroup]="registerForm"
   />
 
-  <div>
-    <text-input
-      label="First Name"
-      placeholder="Input First Name"
-      type="text"
-      name="firstName"
-      [formGroup]="registerForm"
-    />
+  <text-input
+    label="First Name"
+    placeholder="Input First Name"
+    type="text"
+    name="firstName"
+    [formGroup]="registerForm"
+  />
 
-    <ion-text *ngIf="f.firstName.touched && f.firstName.invalid" color="danger"
-      >Invalid</ion-text
-    >
-  </div>
-
-  <div>
-    <ion-input
-      label="Last Name"
-      placeholder="Input Last Name"
-      type="text"
-      formControlName="lastName"
-    />
-
-    <ion-text *ngIf="f.lastName.touched && f.lastName.invalid" color="danger"
-      >Invalid</ion-text
-    >
-  </div>
+  <text-input
+    label="Last Name"
+    placeholder="Input Last Name"
+    type="text"
+    name="lastName"
+    [formGroup]="registerForm"
+  />
 
   <div>
     <ion-input
