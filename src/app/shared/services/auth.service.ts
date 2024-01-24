@@ -13,4 +13,8 @@ export class AuthService {
   async register(input: object): Promise<object> {
     return await this.api.post(`${this.ROUTE}/register`, input);
   }
+
+  async login(input: object): Promise<object> {
+    return await this.api.post(`${this.ROUTE}/login`, input);
+  }
 }

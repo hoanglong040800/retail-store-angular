@@ -47,7 +47,7 @@ export class RegisterFormComponent {
       this.toastSrv.present((e as Error).message, 'error');
     }
 
-    // TODO cleanup input after
+    this.registerForm.reset();
     return true;
   }
 
