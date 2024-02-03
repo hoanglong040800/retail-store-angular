@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService, ToastService } from 'shared/services';
+import { LoginRes } from 'shared/types';
 import { markTouchedAllInputs } from 'shared/utils';
 
 @Component({
@@ -18,6 +20,7 @@ export class LoginFormComponent {
   constructor(
     private toastSrv: ToastService,
     private authSerivce: AuthService,
+    private cookieSrv: CookieService,
   ) {}
 
   // publish function so it can be bind in navbar
@@ -26,7 +29,20 @@ export class LoginFormComponent {
       return false;
     }
 
-    return await this.handleLogin();
+    const tokenObj = await this.handleLogin();
+
+    if (!tokenObj) {
+      return false;
+    }
+
+    this.handleAfterLogin(tokenObj);
+
+    return true;
+  }
+
+  handleAfterLogin(token: LoginRes) {
+    this.cookieSrv.set('accessToken', token.accessToken);
+    this.cookieSrv.set('refreshToken', token.refreshToken);
   }
 
   validateFormBeforeSubmit() {
@@ -41,17 +57,17 @@ export class LoginFormComponent {
     return true;
   }
 
-  async handleLogin(): Promise<boolean> {
+  async handleLogin(): Promise<LoginRes> {
     try {
-      await this.authSerivce.login(this.loginForm.value);
+      const tokenObj = await this.authSerivce.login(this.loginForm.value);
 
       this.toastSrv.present('Login successfully', 'success');
       this.loginForm.reset();
 
-      return true;
+      return tokenObj as LoginRes;
     } catch (e) {
       this.toastSrv.present('Login failed. Please try again', 'error');
-      return false;
+      return null;
     }
   }
 }

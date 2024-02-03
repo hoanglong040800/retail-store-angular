@@ -16,36 +16,36 @@ export class ApiService {
     route: string,
     body?: any,
     options?: HttpOptions,
-  ): Promise<ApiResponse> {
-    const observe = this.http.request(method, `${API_URL}${route}`, {
-      body,
-      ...options,
-    });
+  ): Promise<any> {
+    try {
+      const observe = this.http.request(method, `${API_URL}${route}`, {
+        body,
+        ...options,
+      });
 
-    return await lastValueFrom<ApiResponse>(observe as Observable<ApiResponse>);
+      const res = await lastValueFrom<ApiResponse>(
+        observe as Observable<ApiResponse>,
+      );
+
+      return res?.data;
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  async get(route: string, options?: HttpOptions): Promise<ApiResponse> {
+  async get(route: string, options?: HttpOptions): Promise<any> {
     return await this.request('GET', route, undefined, options);
   }
 
-  async post(
-    route: string,
-    body: any,
-    options?: HttpOptions,
-  ): Promise<ApiResponse> {
+  async post(route: string, body: any, options?: HttpOptions): Promise<any> {
     return await this.request('POST', route, body, options);
   }
 
-  async put(
-    route: string,
-    body: any,
-    options?: HttpOptions,
-  ): Promise<ApiResponse> {
+  async put(route: string, body: any, options?: HttpOptions): Promise<any> {
     return await this.request('PUT', route, body, options);
   }
 
-  async delete(route: string, options?: HttpOptions): Promise<ApiResponse> {
+  async delete(route: string, options?: HttpOptions): Promise<any> {
     return await this.request('DELETE', route, undefined, options);
   }
 }
