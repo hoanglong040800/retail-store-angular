@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { COOKIE_AUTH_KEY } from 'shared/constant';
 import { AuthService, ToastService } from 'shared/services';
 import { LoginRes } from 'shared/types';
 import { markTouchedAllInputs } from 'shared/utils';
@@ -40,9 +41,10 @@ export class LoginFormComponent {
     return true;
   }
 
-  handleAfterLogin(token: LoginRes) {
-    this.cookieSrv.set('accessToken', token.accessToken);
-    this.cookieSrv.set('refreshToken', token.refreshToken);
+  handleAfterLogin(token: LoginRes): void {
+    this.cookieSrv.set(COOKIE_AUTH_KEY.accessToken, token.accessToken);
+    this.cookieSrv.set(COOKIE_AUTH_KEY.refreshToken, token.refreshToken);
+    this.cookieSrv.set(COOKIE_AUTH_KEY.user, JSON.stringify(token.user));
   }
 
   validateFormBeforeSubmit() {
