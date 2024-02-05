@@ -1,0 +1,11 @@
+.toast {
+  color: white;
+
+  &-success {
+    --background: var(--ion-color-success);
+  }
+
+  &-error {
+    --background: var(--ion-color-danger);
+  }
+}

@@ -8,7 +8,9 @@ import { IonModal } from '@ionic/angular';
 })
 export class ActionModalComponent {
   @Input() title: string = '';
-  @Input() onConfirm: () => void = () => null;
+  @Input() disabledConfirmButton: boolean | undefined = false;
+  @Input() onConfirm: () => Promise<void | boolean> | void | undefined = () =>
+    Promise.resolve();
 
   @ViewChild(IonModal) modal!: IonModal;
 
@@ -16,8 +18,14 @@ export class ActionModalComponent {
     this.modal.dismiss();
   }
 
-  handleConfirm() {
-    this.onConfirm();
+  async handleConfirm() {
+    const shouldDismiss = await this.onConfirm();
+
+    // only return false when you don't want to dismiss modal
+    if (shouldDismiss === false) {
+      return;
+    }
+
     this.modal.dismiss();
   }
 }

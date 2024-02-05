@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { SharedComponentModule } from 'shared/components/shared-component.module';
-import { EditTodoContentComponent } from './edit-todo-content/edit-todo-content.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { LoginFormComponent, RegisterFormComponent } from './';
 
 @NgModule({
   imports: [
-    // MUST IMPORT CommonModule in order to use ng directives
     CommonModule,
     IonicModule,
     SharedComponentModule,
     ReactiveFormsModule,
   ],
-  declarations: [EditTodoContentComponent],
-  exports: [EditTodoContentComponent],
+  declarations: [RegisterFormComponent, LoginFormComponent],
+  exports: [RegisterFormComponent, LoginFormComponent],
 })
-export class TodoComponentModule {}
+export class AuthModule {}

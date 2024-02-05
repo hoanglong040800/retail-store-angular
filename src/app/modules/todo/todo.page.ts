@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { TodoComponentModule } from './components/todo.component.module';
-import { SharedComponentModule } from 'shared/components/share-component.module';
+import { SharedComponentModule } from 'shared/components/shared-component.module';
 import { ITodo } from 'shared/interfaces';
 import { ActionModalComponent } from 'shared/components/action-modal';
 

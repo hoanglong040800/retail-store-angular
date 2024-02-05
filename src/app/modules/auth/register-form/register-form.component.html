@@ -1,0 +1,55 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <text-input
+    label="Email"
+    type="email"
+    placeholder="Input email"
+    name="email"
+    [formGroup]="registerForm"
+  />
+
+  <text-input
+    label="First Name"
+    placeholder="Input First Name"
+    type="text"
+    name="firstName"
+    [formGroup]="registerForm"
+  />
+
+  <text-input
+    label="Last Name"
+    placeholder="Input Last Name"
+    type="text"
+    name="lastName"
+    [formGroup]="registerForm"
+  />
+
+  <div>
+    <ion-input
+      label="Password"
+      type="password"
+      placeholder="Input password"
+      formControlName="password"
+      (change)="validateConfirmPass()"
+    />
+
+    <ion-text *ngIf="f.password.touched && f.password.invalid" color="danger"
+      >Invalid</ion-text
+    >
+  </div>
+
+  <div>
+    <ion-input
+      label="Confirm Passowrd"
+      type="password"
+      placeholder="Input confirm password"
+      formControlName="confirmPassword"
+      (change)="validateConfirmPass()"
+    />
+
+    <ion-text
+      *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid"
+      color="danger"
+      >Invalid</ion-text
+    >
+  </div>
+</form>

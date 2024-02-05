@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Retail Store</ion-title>
+
+    <div *ngIf="authSrv.isLoggedIn; else authBtn">
+      <ion-button (click)="authSrv.logout()">Logout</ion-button>
+    </div>
+
+    <ng-template #authBtn>
+      <ion-button (click)="onOpenAuthModal('register')">Register</ion-button>
+      <ion-button (click)="onOpenAuthModal('login')">Login</ion-button>
+    </ng-template>
+  </ion-toolbar>
+</ion-header>
+
+<!-- use pre-defined id to bind its function -->
+<action-modal
+  #registerFormModal
+  [title]="renderAuthFormTitle()"
+  [onConfirm]="registerForm.onSubmit.bind(registerForm)"
+  [disabledConfirmButton]="registerForm.disabledConfirm"
+>
+  <!-- define id for binding -->
+  <register-form #registerForm />
+</action-modal>
+
+<!-- use separated action-modal for binding purpose. Can not dynamically bind -->
+<action-modal
+  #loginFormModal
+  [title]="renderAuthFormTitle()"
+  [onConfirm]="loginForm.onSubmit.bind(loginForm)"
+  [disabledConfirmButton]="loginForm.disabledConfirm"
+>
+  <login-form #loginForm />
+</action-modal>
