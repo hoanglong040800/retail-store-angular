@@ -10,11 +10,13 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
   private ROUTE = '/auth';
 
+  isLoggedIn: boolean = false;
+
   constructor(
     private api: ApiService,
     private cookieSrv: CookieService,
   ) {
-    // TODO long.t init isLoggedIn here
+    this.isLoggedIn = !!cookieSrv.get('accessToken');
   }
 
   async registerApi(body: RegisterBody): Promise<object> {
@@ -61,9 +63,21 @@ export class AuthService {
     return true;
   }
 
+  logout() {
+    this.removeAuthCookies();
+    this.isLoggedIn = false;
+  }
+
+  removeAuthCookies() {
+    for (const authKey in COOKIE_AUTH_KEY) {
+      this.cookieSrv.delete(authKey);
+    }
+  }
+
   handleAfterLogin(loginRes: LoginRes): void {
     this.cookieSrv.set(COOKIE_AUTH_KEY.accessToken, loginRes.accessToken);
     this.cookieSrv.set(COOKIE_AUTH_KEY.refreshToken, loginRes.refreshToken);
     this.cookieSrv.set(COOKIE_AUTH_KEY.user, JSON.stringify(loginRes.user));
+    this.isLoggedIn = true;
   }
 }

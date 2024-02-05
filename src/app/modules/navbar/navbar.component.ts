@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { AuthModule } from 'modules/auth/auth.module';
-import { CookieService } from 'ngx-cookie-service';
 import { ActionModalComponent } from 'shared/components';
 import { SharedComponentModule } from 'shared/components/shared-component.module';
-import { COOKIE_AUTH_KEY } from 'shared/constant';
+import { AuthService } from 'shared/services';
 
 type AuthFormType = 'register' | 'login';
 
@@ -21,22 +20,9 @@ export class NavbarComponent {
   @ViewChild('loginFormModal') loginFormModal!: ActionModalComponent;
 
   authFormType: AuthFormType = 'register';
-  isLoggedIn: boolean = false;
 
-  constructor(private cookieSrv: CookieService) {
-    this.isLoggedIn = !!cookieSrv.get('accessToken');
-  }
-
-  handleClickLogout() {
-    this.removeAuthCookies();
-    this.isLoggedIn = false;
-  }
-
-  removeAuthCookies() {
-    for (const authKey in COOKIE_AUTH_KEY) {
-      this.cookieSrv.delete(authKey);
-    }
-  }
+  // protected: html can access authSrv
+  constructor(protected authSrv: AuthService) {}
 
   onOpenAuthModal(type: AuthFormType) {
     this.authFormType = type;

@@ -2,11 +2,11 @@
   <ion-toolbar>
     <ion-title>Retail Store</ion-title>
 
-    <div *ngIf="isLoggedIn; else logOut">
-      <ion-button (click)="handleClickLogout()">Logout</ion-button>
+    <div *ngIf="authSrv.isLoggedIn; else authBtn">
+      <ion-button (click)="authSrv.logout()">Logout</ion-button>
     </div>
 
-    <ng-template #logOut>
+    <ng-template #authBtn>
       <ion-button (click)="onOpenAuthModal('register')">Register</ion-button>
       <ion-button (click)="onOpenAuthModal('login')">Login</ion-button>
     </ng-template>
