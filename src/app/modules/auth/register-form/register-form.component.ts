@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService, ToastService } from 'shared/services';
+import { RegisterBody } from 'shared/types';
 
 @Component({
   selector: 'register-form',
@@ -42,23 +43,24 @@ export class RegisterFormComponent {
     }
 
     try {
-      await this.handleRegister();
+      const body: RegisterBody = {
+        email: this.f.email.value,
+        password: this.f.password.value,
+        firstName: this.f.firstName.value,
+        lastName: this.f.lastName.value,
+      };
+
+      await this.authService.register(body, {
+        isLoginAfter: true,
+      });
+
+      this.toastSrv.present('Register successfully', 'success');
     } catch (e) {
       this.toastSrv.present((e as Error).message, 'error');
     }
 
     this.registerForm.reset();
     return true;
-  }
-
-  async handleRegister(): Promise<void> {
-    const result = await this.authService.register(this.registerForm.value);
-
-    if (!result) {
-      throw new Error(`There's something wrong. Please try again`);
-    }
-
-    this.toastSrv.present('Register successfully', 'success');
   }
 
   validateConfirmPass() {

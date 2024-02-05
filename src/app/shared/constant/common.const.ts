@@ -14,5 +14,5 @@ export enum COOKIE_KEY {
 export enum COOKIE_AUTH_KEY {
   accessToken = COOKIE_KEY.accessToken,
   refreshToken = COOKIE_KEY.refreshToken,
-  user = COOKIE_KEY.refreshToken,
+  user = COOKIE_KEY.user,
 }

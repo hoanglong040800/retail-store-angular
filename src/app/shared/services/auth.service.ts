@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { LoginRes } from 'shared/types';
+import { LoginRes, RegisterBody, RegisterOptions } from 'shared/types';
 import { COOKIE_AUTH_KEY } from 'shared/constant';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -17,11 +17,11 @@ export class AuthService {
     // TODO long.t init isLoggedIn here
   }
 
-  // TODO define interface later
-  async register(input: object): Promise<object> {
-    return await this.api.post(`${this.ROUTE}/register`, input);
+  async registerApi(body: RegisterBody): Promise<object> {
+    return await this.api.post(`${this.ROUTE}/register`, body);
   }
 
+  // TODO define interface later
   async loginApi(input: object): Promise<LoginRes> {
     return await this.api.post(`${this.ROUTE}/login`, input);
   }
@@ -36,6 +36,27 @@ export class AuthService {
 
     const loginRes = await this.loginApi(loginData);
     this.handleAfterLogin(loginRes);
+
+    return true;
+  }
+
+  async register(
+    body: RegisterBody,
+    options: RegisterOptions,
+  ): Promise<boolean> {
+    if (!body) {
+      return false;
+    }
+
+    const result = await this.registerApi(body);
+
+    if (!result) {
+      throw new Error(`There's something wrong. Please try again`);
+    }
+
+    if (options.isLoginAfter) {
+      return await this.login({ email: body.email, password: body.password });
+    }
 
     return true;
   }
